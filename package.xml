@@ -3,8 +3,8 @@
 <package format="3">
   <name>luos</name>
   <version>0.0.1</version>
-  <description>Luos package for ROS1 and ROS 2</description>
-  <maintainer email="yoan@aubrun.eu">Yoan Mollard</maintainer>
+  <description>Luos lets you easily connect, interact and program your robots is ROS1 and ROS 2</description>
+  <maintainer email="yoan@aubrune.eu">Yoan Mollard</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
