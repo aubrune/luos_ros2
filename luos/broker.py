@@ -1,3 +1,5 @@
+import rclpy
+
 def main():
     print('Hi from Luos.')
 
