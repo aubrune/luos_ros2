@@ -3,6 +3,7 @@ from os import listdir
 from os.path import isdir, join
 from pyluos import Robot
 from serial import SerialException
+from .modules import make_module_interface_factory
 
 class LuosBroker(rclpy.node.Node):
     RATE_HZ = 10
@@ -11,6 +12,7 @@ class LuosBroker(rclpy.node.Node):
         self._port = ""
         self._log = None
         self._robot = None
+        self._module_interfaces = {}
 
     def autoconnect(self):
         # TODO Windows, MacOS
@@ -31,19 +33,21 @@ class LuosBroker(rclpy.node.Node):
                         pass
         return self._robot is not None
 
-    def _timer_callback(self):
-        for module in self._robot.modules:
-            if module.type == "Gate":
-                pass
-            else:
-                self._log.warn("Ignoring unkown Luos module with type '{}'".format(module.type))
+    #def _timer_callback(self):
+    #    for module in self._robot.modules:
+    #        if module.type == "Gate":
+    #            pass
+    #        else:
+    #            self._log.warn("Ignoring unkown Luos module with type '{}'".format(module.type))
 
     def run(self):
         self._log = self.get_logger()
         self._publisher = self.create_publisher(String, 'topic', 10)
         if self.autoconnect():
             self._log.info("Found modules {}".format(self._robot.modules))
-            self._timer = self.create_timer(1./self.RATE_HZ, self._timer_callback)
+            for module in modules:
+                self._module_interfaces[module.alias] = make_module_interface_factory(module)
+            #self._timer = self.create_timer(1./self.RATE_HZ, self._timer_callback)
         else:
             self._log.error("No Luos module found")
 
