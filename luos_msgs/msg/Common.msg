@@ -1,0 +1,11 @@
+float32 temperature
+float32 voltage
+string firmware_revision
+float32 last_update
+bool led
+uint32[3] uuid
+# value
+string type
+string alias
+uint32 id
+float32 refresh_freq

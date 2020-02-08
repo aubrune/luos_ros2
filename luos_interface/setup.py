@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'luos'
+package_name = 'luos_interface'
 
 setup(
     name=package_name,
@@ -18,7 +18,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'broker = luos.broker:main'
+            'broker = luos_interface.broker:main'
         ],
     },
     dependency_links = [

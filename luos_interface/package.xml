@@ -1,13 +1,15 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>luos</name>
+  <name>luos_interface</name>
   <version>0.0.1</version>
-  <description>Luos lets you easily connect, interact and program your robots is ROS1 and ROS 2</description>
+  <description>This is the ROS interface for Luos. Luos lets you easily connect, interact and program your robots.</description>
   <maintainer email="yoan@aubrune.eu">Yoan Mollard</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_python</buildtool_depend>
+
+  <un_depend>luos_msgs</run_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
