@@ -13,7 +13,7 @@ class LuosStatePublisher(object):
                 new_value=event.new_value
             )
 
-        for event in ["changed", "falling", "rising"]:
+        for event in module.possible_events:
             topic = "/".join([module.alias, "events", event])
             self._publishers[event] = self._node.create_publisher(State, topic, self.QUEUE_SIZE)
             module.add_callback(event, lambda e: self._publishers[e.name].publish(serialize(module, e)))
