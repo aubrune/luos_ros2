@@ -1,17 +1,12 @@
-from luos_msgs.msg import Common
 from std_msgs.msg import Float32, ColorRGBA
 
 def serializeColor(module, data):
-    if data is None:
-        return ColorRGBA()
-    else:
-        return ColorRGBA(
-            #common=LuosCommonMessageSerializer.luos_to_ros(module),
-            r=data[0],
-            g=data[1],
-            b=data[2],
-            a=float('nan'),                
-        )
+    return ColorRGBA(
+        r=float('nan') if data is None else data[0],
+        g=float('nan') if data is None else data[1],
+        b=float('nan') if data is None else data[2],
+        a=float('nan'),                
+    )
 
 def serializeFloat32(module, data):
     return Float32(data=data)
@@ -41,8 +36,6 @@ class LuosColorPublisher(object):
     
     def _timer_callback(self):
         for variable, info in self.variables.items():
-            print("MODULE", self._module, "variable", variable)
             serialize = info["serialize"]
             self._publishers[variable]["pub"].publish(serialize(self._module, getattr(self._module, variable)))
-            print('END')
 
