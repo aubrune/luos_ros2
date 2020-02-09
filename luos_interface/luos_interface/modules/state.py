@@ -10,4 +10,5 @@ class LuosStatePublisher(LuosGenericPublisher):
             "falling": {"type": State, "serialize": serializeState},
             "changed": {"type": State, "serialize": serializeState}
         }
-        super(LuosStatePublisher, self).__init__(node, module, variables, events)
+        aggregates = {}
+        super(LuosStatePublisher, self).__init__(node, module, variables, events, aggregates)

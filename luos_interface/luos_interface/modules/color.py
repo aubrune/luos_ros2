@@ -9,4 +9,5 @@ class LuosColorPublisher(LuosGenericPublisher):
             "time": {"type": Float32, "serialize": serializeFloat32}
         }
         events = {}
-        super(LuosColorPublisher, self).__init__(node, module, variables, events)
+        aggregates = {}
+        super(LuosColorPublisher, self).__init__(node, module, variables, events, aggregates)

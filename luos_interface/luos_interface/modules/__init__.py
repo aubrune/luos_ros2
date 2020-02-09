@@ -1,9 +1,11 @@
 from .state import LuosStatePublisher
 from .color import LuosColorPublisher
+from .imu import LuosImuPublisher
 
 _make = {
     'State': LuosStatePublisher,
-    'Color': LuosColorPublisher
+    'Color': LuosColorPublisher,
+    'Imu': LuosImuPublisher,
 }
 
 def make_module_interface_factory(node, module):
