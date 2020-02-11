@@ -85,12 +85,12 @@ ros2 pkg create luos_bike_alarm_example --build-type ament_python --dependencies
 
 ## Package TODO List
 
-[] Clock() : timestamp messages with a sub type of clock
-[] Hardcoded mesh filepath of bike alarm example: ament resources?
-[] Launch files
-[] ROS param for publishing rate and...?
-[] (Auto?) Starting Luos modules data e.g. imu.orientation
-[] Subscribers (write access to Luos modules)
-[] Windows and MacOS autoconnect
-[] ROS1 bridge
-[] Integrate doc into https://luos-robotics.github.io/ 
+- [ ] Clock() : timestamp messages with a sub type of clock
+- [ ] Hardcoded mesh filepath of bike alarm example: ament resources?
+- [ ] Launch files
+- [ ] ROS param for publishing rate and...?
+- [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
+- [ ] Subscribers (write access to Luos modules)
+- [ ] Windows and MacOS autoconnect
+- [ ] ROS1 bridge
+- [ ] Integrate doc into https://luos-robotics.github.io/ 
