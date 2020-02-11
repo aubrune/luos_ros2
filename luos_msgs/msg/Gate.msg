@@ -1,1 +1,0 @@
-luos_msgs/Common common

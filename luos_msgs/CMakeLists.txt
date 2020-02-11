@@ -23,11 +23,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 # Luos message types
 set(msg_files
-  "msg/Common.msg"
-  "msg/Gate.msg"
-  "msg/Imu.msg"
   "msg/State.msg"
-  "msg/Color.msg"
 )
 
 if(BUILD_TESTING)
