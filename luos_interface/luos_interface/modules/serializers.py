@@ -87,7 +87,6 @@ Event serialization from State Luos module to State ROS type
 """
 def serializeState(module, event):
     return State(
-        #common=LuosCommonMessageSerializer.luos_to_ros(module),
         old_value=event.old_value,
         new_value=event.new_value
     )
