@@ -82,3 +82,15 @@ linear_acceleration_covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 cd ~/ros2_ws/src
 ros2 pkg create luos_bike_alarm_example --build-type ament_python --dependencies luos_interface
 ```
+
+## Package TODO List
+
+[] Clock() : timestamp messages with a sub type of clock
+[] Hardcoded mesh filepath of bike alarm example: ament resources?
+[] Launch files
+[] ROS param for publishing rate and...?
+[] (Auto?) Starting Luos modules data e.g. imu.orientation
+[] Subscribers (write access to Luos modules)
+[] Windows and MacOS autoconnect
+[] ROS1 bridge
+[] Integrate doc into https://luos-robotics.github.io/ 
