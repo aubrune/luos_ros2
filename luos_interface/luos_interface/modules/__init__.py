@@ -11,6 +11,6 @@ _make = {
 def make_module_interface_factory(node, module):
     if module.type in _make:
         return _make[module.type](node, module)
-    else:
-        print(ValueError("Luos module type '{}' is unknown".format(module.type)))
-        #TODO raise ValueError("Luos module type '{}' is unknown".format(type(module.type)))
+    elif module.type != 'Gate':
+        # Gate has no publisher or subscriber
+        node.get_logger().warn("Luos module type '{}' is unknown to luos_interface and will be ignored".format(module.type))

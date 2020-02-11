@@ -15,11 +15,15 @@ class LuosBroker(Node):
         self._module_interfaces = {}
         self._log = self.get_logger()
         if self.autoconnect():
-            self._log.info("Found modules {}".format(self._robot.modules))
+            self._log.info("Broker found {} modules:\r\n{}".format(self.num_modules, self._robot.modules))
             for module in self._robot.modules:
                 self._module_interfaces[module.alias] = make_module_interface_factory(self, module)
         else:
             self._log.error("No Luos module found")
+
+    @property
+    def num_modules(self):
+        return len(self._robot.modules)
 
     def autoconnect(self):
         # TODO Windows, MacOS
@@ -47,6 +51,7 @@ class LuosBroker(Node):
 def main():
     rclpy.init()
     broker = LuosBroker()
+    broker._log.info("Broker is publishing {} Luos modules data...".format(broker.num_modules))
     try:
         rclpy.spin(broker)
     except KeyboardInterrupt:
