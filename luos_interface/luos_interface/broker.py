@@ -23,7 +23,7 @@ class LuosBroker(Node):
 
     @property
     def num_modules(self):
-        return len(self._robot.modules)
+        return len(self._robot.modules) if self._robot is not None else 0
 
     def autoconnect(self):
         # TODO Windows, MacOS
