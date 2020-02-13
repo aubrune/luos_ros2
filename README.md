@@ -91,6 +91,7 @@ ros2 pkg create luos_bike_alarm_example --build-type ament_python --dependencies
 - [ ] ROS param for publishing rate and...?
 - [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [ ] Subscribers (write access to Luos modules)
+- [ ] Runtime update of pubs/subs when modules are connected and disconnected
 - [ ] Windows and MacOS autoconnect
 - [ ] ROS1 bridge
 - [ ] Integrate doc into https://luos-robotics.github.io/ 
