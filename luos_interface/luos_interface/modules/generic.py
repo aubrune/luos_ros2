@@ -5,26 +5,44 @@ class LuosGenericPublisher(object):
         self._node = node
         self._module = module
         self._publishers = {}
+        self._subscribers = {}
         self._timer = None
         self.variables = variables    # Dict {name: ROSType}
         self.events = events          # Dict {name: ROSType}
         self.aggregates = aggregates  # Dict {name: ROSType}
 
         # Open publishers for Luos variables
-        for variable in self.variables:
-            type = self.variables[variable]["type"]
-            topic = "/".join([module.alias, "variables", variable, "read"])
-            self._publishers[variable] = {
-                "topic": topic,
-                "type": type,
-                "pub": self._node.create_publisher(type, topic, self.QUEUE_SIZE)
-            }
+        for variable, info in self.variables.items():
+            type = info["type"]
+            topic_root = [module.alias, "variables", variable]
+            if True: #"read" in info and info["read"]:
+                print("TODO Do not force read")
+                topic = "/".join(topic_root + ["read"])
+                self._publishers[variable] = {
+                    "topic": topic,
+                    "type": type,
+                    "pub": self._node.create_publisher(type, topic, self.QUEUE_SIZE)
+                }
+            if "write" in info and info["write"]:
+                topic = "/".join(topic_root + ["write"])
+                callback = lambda msg, variable=variable: self._subscription_callback(msg, variable)
+                self._subscribers[variable] = {
+                    "topic": topic,
+                    "type": type,
+                    "callback": callback,
+                }
+                self._node.create_subscription(
+                    type,
+                    topic,
+                    callback,
+                    self.QUEUE_SIZE
+                )
 
         # Open publishers for aggregated Luos variables converted into ROS standard messages
-        for aggregate in self.aggregates:
-            type = self.aggregates[aggregate]["type"]
+        for aggregate, info in self.aggregates.items():
+            type = info["type"]
             topic = "/".join([module.alias, aggregate])
-            serialize = self.aggregates[aggregate]["serialize"]
+            serialize = info["serialize"]
             self._publishers[aggregate] = {
                 "topic": topic,
                 "type": type,
@@ -32,10 +50,10 @@ class LuosGenericPublisher(object):
             }
 
         # Open publishers for Luos events
-        for event in self.events:
-            type = self.events[event]["type"]
+        for event, info in self.events.items():
+            type = info["type"]
             topic = "/".join([module.alias, "events", event])
-            serialize = self.events[event]["serialize"]
+            serialize = info["serialize"]
             self._publishers[event] = {
                 "topic": topic,
                 "type": type,
@@ -46,7 +64,13 @@ class LuosGenericPublisher(object):
         # Start the timer for variables and aggregates
         self._timer = self._node.create_timer(1./self.RATE_HZ, self._timer_callback)
 
+    def _subscription_callback(self, msg, variable):
+        # A "write" message is incoming, it is transferred to Luos modules
+        deserialize = self.variables[variable]["deserialize"]
+        setattr(self._module, variable, deserialize(msg))
+
     def _timer_callback(self):
+        # "read" messages are all sent at a specific rate
         # Publish variables on a regular basis (with module-agnostic serializers e.g. Float32, UInt32...)
         for variable, info in self.variables.items():
             serialize = info["serialize"]
