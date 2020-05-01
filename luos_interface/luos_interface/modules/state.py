@@ -1,10 +1,16 @@
 from luos_msgs.msg import State
-from .serializers import serializeState
+from std_msgs.msg import Bool
+from .serializers import serializeState, serializeBool
+from .deserializers import deserializeBool
 from .generic import LuosGenericPublisher
 
 class LuosStatePublisher(LuosGenericPublisher):
     def __init__(self, node, module):
-        variables = {}
+        variables = {
+            "state": {"type": Bool,
+                      "serialize": serializeBool, "deserialize": deserializeBool,
+                      "read": True, "write": True},
+        }
         events = {
             "rising": {"type": State, "serialize": serializeState},
             "falling": {"type": State, "serialize": serializeState},

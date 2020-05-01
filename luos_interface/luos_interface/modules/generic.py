@@ -15,8 +15,7 @@ class LuosGenericPublisher(object):
         for variable, info in self.variables.items():
             type = info["type"]
             topic_root = [module.alias, "variables", variable]
-            if True: #"read" in info and info["read"]:
-                print("TODO Do not force read")
+            if "read" in info and info["read"]:
                 topic = "/".join(topic_root + ["read"])
                 self._publishers[variable] = {
                     "topic": topic,

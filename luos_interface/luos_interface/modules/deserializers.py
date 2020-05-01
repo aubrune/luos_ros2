@@ -7,6 +7,9 @@ There are:
 
 #RAD_TO_DEG = 57.29577951308232
 
+def deserializeBool(msg):
+    return bool(msg.data)
+
 def deserializeFloat32(msg):
     return float(msg.data)
 

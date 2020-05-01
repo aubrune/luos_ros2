@@ -3,16 +3,21 @@ from geometry_msgs.msg import Vector3, Accel
 from sensor_msgs.msg import Imu, MagneticField
 from .serializers import serializeUInt32, serializeFloat32, serializeVector3
 from .serializers import serializeAccel, serializeImu, serializeMagneticField
+from .deserializers import deserializeBool
 from .generic import LuosGenericPublisher
 
 class LuosImuPublisher(LuosGenericPublisher):
     def __init__(self, node, module):
         variables = {
-            "pedometer": {"type": UInt32, "serialize": serializeUInt32},
-            "walk_time": {"type": Float32, "serialize": serializeFloat32},
-            "gravity_vector": {"type": Vector3, "serialize": serializeVector3},
+            "pedometer": {"type": UInt32, "read": True, "write": True,
+                          "serialize": serializeUInt32, "deserialize": deserializeBool},
+            "walk_time": {"type": Float32, "read": True, "write": True,
+                          "serialize": serializeFloat32, "deserialize": deserializeBool},
+            "gravity_vector": {"type": Vector3, "read": True, "write": True,
+                               "serialize": serializeVector3, "deserialize": deserializeBool},
             # TODO: is heading a [Float, Float, Float]?
-            "heading": {"type": UInt32, "serialize": serializeUInt32},
+            "heading": {"type": UInt32, "read": True, "write": True,
+                        "serialize": serializeUInt32, "deserialize": deserializeBool},
         }
         events = {}
         aggregates = {

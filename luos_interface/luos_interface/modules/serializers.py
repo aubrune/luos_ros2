@@ -5,7 +5,7 @@ There are:
   * module-dependent serialiers, that only take the module in input
 """
 
-from std_msgs.msg import Float32, UInt32, ColorRGBA
+from std_msgs.msg import Bool, Float32, UInt32, ColorRGBA
 from geometry_msgs.msg import Vector3, Accel
 from sensor_msgs.msg import Imu, MagneticField
 from luos_msgs.msg import State
@@ -13,6 +13,9 @@ from rclpy.timer import Clock
 
 DEG_TO_RAD=0.017453292519943295
 _clock = Clock()
+
+def serializeBool(data):
+    return Bool(data=bool(data))
 
 def serializeFloat32(data):
     return Float32(data=float(data))
