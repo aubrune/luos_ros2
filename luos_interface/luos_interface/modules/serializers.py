@@ -28,9 +28,9 @@ Variable serialization from Color Luos module to ColorRGBA ROS type
 """
 def serializeColor(data):
     return ColorRGBA(
-        r=float('nan') if data is None else data[0],
-        g=float('nan') if data is None else data[1],
-        b=float('nan') if data is None else data[2],
+        r=float('nan' if data is None else data[0]),
+        g=float('nan' if data is None else data[1]),
+        b=float('nan' if data is None else data[2]),
         a=float('nan'),                
     )
 
