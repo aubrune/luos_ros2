@@ -1,8 +1,8 @@
 # Luos with ROS1 and ROS2
 
-Luos comes with a ROS1 and ROS2 interface.
+Luos comes with a ROS1 and ROS2 interface in this repository. You can get an example of an application using Luos modules in ROS2 with the [bike sharing example](https://github.com/aubrune/luos_bike_alarm_example).
 
-## Install Luos in ROS 2
+## Install ROS 2 and Luos
 
 First install [ROS 2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) with FastRTPS and `ros1_bridge` and `colcon`.
 
@@ -25,38 +25,49 @@ Just plug in your Luos gate and other modules, such as Imu, Color or State, and 
 Type                Alias               ID   
 -------------------------------------------------
 Gate                gate                1    
-Imu                 gps                 2    
-State               lock                3    
-Color               alarm               5    
+Imu                 Imu_mod             2    
+State               button_mod          3    
+Color               rgb_led_mod         5    
 ```
 
-According the modules you've plugged-in, the broker will automatically publish the revelant topics in the namespace of your modules' aliases. For isntance, here we've plugged a `State` module (alias `lock`), a `Imu` module (alias `gps`) and a `Color` module (alias `alarm`) to the gate ; thus the broker publishes the following topics:
+According the modules you've plugged-in, the broker will automatically publish the revelant topics in the namespace of your modules' aliases.
+Here we've plugged a `State` module (alias `button_mod`), a `Imu` module (alias `Imu_mod`) and a `Color` module (alias `rgb_led_mod`) to the gate ; thus the broker publishes the following topics:
 ```
 ~$ ros2 topic list
-/alarm/variables/color/read
-/alarm/variables/time/read
-/gps/acceleration
-/gps/compass
-/gps/imu
-/gps/variables/gravity_vector/read
-/gps/variables/heading/read
-/gps/variables/pedometer/read
-/gps/variables/walk_time/read
-/lock/events/changed
-/lock/events/falling
-/lock/events/rising
+/Imu_mod/acceleration
+/Imu_mod/compass
+/Imu_mod/imu
+/Imu_mod/variables/gravity_vector/read
+/Imu_mod/variables/gravity_vector/write
+/Imu_mod/variables/heading/read
+/Imu_mod/variables/heading/write
+/Imu_mod/variables/pedometer/read
+/Imu_mod/variables/pedometer/write
+/Imu_mod/variables/walk_time/read
+/Imu_mod/variables/walk_time/write
+/button_mod/events/changed
+/button_mod/events/falling
+/button_mod/events/rising
+/button_mod/variables/state/read
+/button_mod/variables/state/write
 /parameter_events
+/rgb_led_mod/variables/color/read
+/rgb_led_mod/variables/color/write
+/rgb_led_mod/variables/time/read
+/rgb_led_mod/variables/time/write
 /rosout
 ```
 
-In order to echo messages from the terminal, use the regular ros2topic command line. For instance here's the current IMU data:
+Most variables advertise both `/read` and `/write` topics, to get data, write data, or (de)activate this data source. Other types of data might be aggregates of Luos variables (such as the imu) or Luos events.
+
+In order to echo messages from the terminal, use a regular ROS subscriber. For instance here's the current IMU data:
 ```
-~$ ros2 topic echo /gps/imu 
+~$ ros2 topic echo /Imu_mod/imu
 header:
   stamp:
     sec: 1581267954
     nanosec: 5449
-  frame_id: gps
+  frame_id: Imu_mod
 orientation:
   x: 0.97814
   y: 0.052695
@@ -76,11 +87,16 @@ linear_acceleration_covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 ---
 ```
 
-## Get started with my own ROS2 package using Luos
+In order to publish messages to the Luos modules, use a regular ROS publisher. For instance, here's how to light up the Luos RGB module, in pink color:
+```
+ros2 topic pub /rgb_led_mod/variables/color/write std_msgs/msg/ColorRGBA "{r: 64, g: 0, b: 64}" --once
+```
+
+## Get started with my own ROS2 package using Luos in Python
 
 ```
 cd ~/ros2_ws/src
-ros2 pkg create luos_bike_alarm_example --build-type ament_python --dependencies luos_interface
+ros2 pkg create my_luos_ros2_package --build-type ament_python --dependencies luos_interface
 ```
 
 ## Package TODO List
