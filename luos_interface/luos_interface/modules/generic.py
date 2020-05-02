@@ -1,12 +1,12 @@
 class LuosGenericPublisher(object):
     QUEUE_SIZE = 1
-    RATE_HZ = 20
-    def __init__(self, node, module, variables, events, aggregates):
+    def __init__(self, node, module, rate, variables, events, aggregates):
         self._node = node
         self._module = module
         self._publishers = {}
         self._subscribers = {}
         self._timer = None
+        self._rate = rate
         self.variables = variables    # Dict {name: ROSType}
         self.events = events          # Dict {name: ROSType}
         self.aggregates = aggregates  # Dict {name: ROSType}
@@ -61,7 +61,7 @@ class LuosGenericPublisher(object):
             module.add_callback(event, lambda e: self._publishers[event]["pub"].publish(serialize(module, e)))
 
         # Start the timer for variables and aggregates
-        self._timer = self._node.create_timer(1./self.RATE_HZ, self._timer_callback)
+        self._timer = self._node.create_timer(1./self._rate, self._timer_callback)
 
     def _subscription_callback(self, msg, variable):
         # A "write" message is incoming, it is transferred to Luos modules

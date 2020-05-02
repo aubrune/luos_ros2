@@ -1,4 +1,6 @@
 from setuptools import setup
+from os.path import join
+from glob import glob
 
 package_name = 'luos_interface'
 
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (join('share', package_name), glob('launch/*.launch.py')),
     ],
     install_requires=['setuptools', 'pyserial', 'pyluos==1.1.0'],
     zip_safe=True,

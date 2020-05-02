@@ -104,7 +104,7 @@ ros2 pkg create my_luos_ros2_package --build-type ament_python --dependencies lu
 - [x] Clock() : timestamp messages with a sub type of clock
 - [x] Hardcoded mesh filepath of bike alarm example: ament resources?
 - [x] Launch files
-- [ ] ROS param for publishing rate and...?
+- [x] ROS param for publishing rate and device name?
 - [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [ ] Get all the ttys
 - [ ] Several imu modules with the same alias -> Publish to /gps1

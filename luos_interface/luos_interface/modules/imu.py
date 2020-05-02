@@ -7,7 +7,7 @@ from .deserializers import deserializeBool
 from .generic import LuosGenericPublisher
 
 class LuosImuPublisher(LuosGenericPublisher):
-    def __init__(self, node, module):
+    def __init__(self, node, module, rate):
         variables = {
             "pedometer": {"type": UInt32, "read": True, "write": True,
                           "serialize": serializeUInt32, "deserialize": deserializeBool},
@@ -25,7 +25,7 @@ class LuosImuPublisher(LuosGenericPublisher):
             "imu": {"type": Imu, "serialize": serializeImu},
             "compass": {"type": MagneticField, "serialize": serializeMagneticField},
         }
-        super(LuosImuPublisher, self).__init__(node, module, variables, events, aggregates)
+        super(LuosImuPublisher, self).__init__(node, module, rate, variables, events, aggregates)
 
 """
 Aggregate 1
