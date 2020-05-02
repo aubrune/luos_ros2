@@ -99,16 +99,17 @@ cd ~/ros2_ws/src
 ros2 pkg create my_luos_ros2_package --build-type ament_python --dependencies luos_interface
 ```
 
-## Package TODO List
+## Roadmap
 
 - [x] Clock() : timestamp messages with a sub type of clock
 - [x] Hardcoded mesh filepath of bike alarm example: ament resources?
 - [x] Launch files
 - [x] ROS param for publishing rate and device name?
+- [x] Subscribers (write access to Luos modules)
+- [ ] Integration of other Luos types
 - [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [ ] Get all the ttys
 - [ ] Several imu modules with the same alias -> Publish to /gps1
-- [x] Subscribers (write access to Luos modules)
 - [ ] Runtime update of pubs/subs when modules are connected and disconnected
 - [ ] Windows and MacOS autoconnect
 - [ ] ROS1 bridge
