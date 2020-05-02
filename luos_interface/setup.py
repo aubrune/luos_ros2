@@ -14,7 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (join('share', package_name), glob('launch/*.launch.py')),
     ],
-    install_requires=['setuptools', 'pyserial', 'pyluos==1.1.0'],
+    install_requires=['setuptools', 'pyserial', 'pyluos==1.2.1'],
     zip_safe=True,
     maintainer='Yoan Mollard',
     maintainer_email='yoan@aubrune.eu',
@@ -27,6 +27,6 @@ setup(
         ],
     },
     dependency_links = [
-       'http://github.com/Luos-Robotics/pyluos/tarball/master#egg=pyluos-1.1.0'
+       'http://github.com/Luos-Robotics/pyluos/tarball/master#egg=pyluos-1.2.1'
    ]
 )

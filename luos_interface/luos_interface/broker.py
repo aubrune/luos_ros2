@@ -2,7 +2,7 @@ import rclpy
 from rclpy.node import Node
 from os import listdir
 from os.path import isdir, join
-from pyluos import Robot
+from pyluos import Device
 from serial import SerialException
 from rcl_interfaces.srv import GetParameters
 from .modules import make_module_interface_factory
@@ -12,7 +12,7 @@ class LuosBroker(Node):
     DEFAULT_RATE_HZ = 30
     def __init__(self):
         super(LuosBroker, self).__init__("luos_broker")
-        self._robot = None
+        self._device = None
         self._module_interfaces = {}
         self._log = self.get_logger()
         self.declare_parameter("device")
@@ -24,7 +24,7 @@ class LuosBroker(Node):
 
     @property
     def num_modules(self):
-        return len(self._robot.modules) if self._robot is not None else 0
+        return len(self._device.modules) if self._device is not None else 0
 
     def connect(self, device=""):
         # Connect either to a specified device or autoconnect if no device is specified
@@ -41,7 +41,7 @@ class LuosBroker(Node):
     def _connect(self, device):
         self._log.info('Connecting to {}...'.format(device))
         try:
-            self._robot = Robot(device)
+            self._device = Device(device)
         except SerialException as e:
             self._log.error(repr(e))
             return False
@@ -49,8 +49,8 @@ class LuosBroker(Node):
             self._log.error(repr(e))
             return False
         else:
-            self._log.info("Broker found {} modules:\r\n{}".format(self.num_modules, self._robot.modules))
-            for module in self._robot.modules:
+            self._log.info("Broker found {} modules:\r\n{}".format(self.num_modules, self._device.modules))
+            for module in self._device.modules:
                 self._module_interfaces[module.alias] = make_module_interface_factory(self, module, self._rate)
             return True
 
@@ -69,8 +69,8 @@ class LuosBroker(Node):
         return False
 
     def close(self):
-        if self._robot is not None:
-            self._robot.close()
+        if self._device is not None:
+            self._device.close()
 
 def main():
     rclpy.init()

@@ -18,7 +18,7 @@ def serializeBool(data):
     return Bool(data=bool(data))
 
 def serializeFloat32(data):
-    return Float32(data=float(data))
+    return Float32(data=float('nan' if data is None else data))
 
 def serializeUInt32(data):
     return UInt32(data=int(data))
