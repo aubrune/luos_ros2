@@ -43,8 +43,7 @@ Aggregated serialization from Imu Luos module to MagneticField ROS type
 def serializeMagneticField(module):
     magn = MagneticField()
     magn.header.frame_id = module.alias
-    # TODO CLOCK
-    #magn.header.stamp = _clock.now()
+    magn.header.stamp = _clock.now().to_msg()
     if module.compass is not None:
         magn.magnetic_field.x = float(module.compass[0])
         magn.magnetic_field.y = float(module.compass[1])
@@ -72,8 +71,7 @@ Aggregated serialization from Imu Luos module to Imu ROS type
 def serializeImu(module):
     imu = Imu()
     imu.header.frame_id = module.alias
-    # TODO CLOCK
-    #imu.header.stamp = _clock.now()
+    imu.header.stamp = _clock.now().to_msg()
     if module.linear_acceleration is not None:
         imu.linear_acceleration.x = float(module.linear_acceleration[0])
         imu.linear_acceleration.y = float(module.linear_acceleration[1])
