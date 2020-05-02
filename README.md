@@ -92,7 +92,7 @@ ros2 pkg create luos_bike_alarm_example --build-type ament_python --dependencies
 - [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [ ] Get all the ttys
 - [ ] Several imu modules with the same alias -> Publish to /gps1
-- [ ] Subscribers (write access to Luos modules)
+- [x] Subscribers (write access to Luos modules)
 - [ ] Runtime update of pubs/subs when modules are connected and disconnected
 - [ ] Windows and MacOS autoconnect
 - [ ] ROS1 bridge
