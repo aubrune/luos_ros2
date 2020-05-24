@@ -6,7 +6,7 @@ Luos comes with a ROS1 and ROS2 interface in this repository. You can get an exa
 
 ## Install ROS 2 and Luos
 
-First install [ROS 2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) with FastRTPS and `ros1_bridge` and `colcon`.
+First install [ROS 2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) with FastRTPS, `ros1_bridge` and `colcon`.
 
 ```
 cd dev_ws/src/
@@ -96,10 +96,12 @@ ros2 topic pub /rgb_led_mod/variables/color/write std_msgs/msg/ColorRGBA "{r: 64
 
 ## Get started with my own ROS2 package using Luos in Python
 
+This command lines will create a new package `my_luos_ros2_package` relying on `luos_interface`:
 ```
 cd ~/ros2_ws/src
 ros2 pkg create my_luos_ros2_package --build-type ament_python --dependencies luos_interface
 ```
+You can then add your ROS Python scripts, by taking example on the [bike sharing example](https://github.com/aubrune/luos_bike_alarm_example).
 
 ## Roadmap
 
