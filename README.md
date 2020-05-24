@@ -1,3 +1,5 @@
+ [![](http://certified.luos.io)](https://luos.io)
+
 # Luos with ROS1 and ROS2
 
 Luos comes with a ROS1 and ROS2 interface in this repository. You can get an example of an application using Luos modules in ROS2 with the [bike sharing example](https://github.com/aubrune/luos_bike_alarm_example).
@@ -114,3 +116,6 @@ ros2 pkg create my_luos_ros2_package --build-type ament_python --dependencies lu
 - [ ] Windows and MacOS autoconnect
 - [ ] ROS1 bridge
 - [ ] Integrate doc into https://luos-robotics.github.io/ 
+
+[![](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fcommunity.luos.io&logo=Discourse)](https://community.luos.io)
+[![](https://img.shields.io/badge/Luos-Documentation-34A3B4)](https://docs.luos.io)
