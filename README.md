@@ -2,18 +2,19 @@
 
 # Luos with ROS1 and ROS2
 
-Luos comes with a ROS1 and ROS2 interface in this repository. You can get an example of an application using Luos modules in ROS2 with the [bike sharing example](https://github.com/aubrune/luos_bike_alarm_example).
+Luos comes with a ROS 2 interface in this repository. You can get an example of an application using Luos modules in ROS 2 with the [bike sharing example](https://github.com/aubrune/luos_bike_alarm_example). We will assume you're using ROS 2. If you want to communicate with a ROS 1 ecosystem, follow this quickstart anyway since ROS 2 needs to be installed and then refer to this [ROS 1 quickstart](./ROS1.md).
 
 ## Install ROS 2 and Luos
 
-First install [ROS 2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) with FastRTPS, `ros1_bridge` and `colcon`.
+First install [ROS 2 Foxy](https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Debians/) with FastRTPS, also install [`colcon`](https://index.ros.org/doc/ros2/Tutorials/Colcon-Tutorial/#install-colcon). Then clone this package and compile:
 
 ```
-cd dev_ws/src/
+cd ros2_ws/src/    # Or replace by your ROS 2 workspace name, maybe also dev_ws/src
 git clone https://github.com/aubrune/luos_ros2.git
-cd luos_ros2
-pip3 install .
-cd .. && colcon build --symlink-install
+cd luos_ros2/luos_interface
+pip3 install --no-warn-script-location .
+cd ~/ros2_ws && colcon build --symlink-install
+source ~/ros2_ws/install/setup.bash
 ```
 
 ## Get started with Luos in ROS2
