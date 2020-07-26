@@ -9,7 +9,7 @@ from std_msgs.msg import Bool, Float32, UInt32, ColorRGBA
 from geometry_msgs.msg import Vector3, Accel
 from sensor_msgs.msg import Imu, MagneticField
 from luos_msgs.msg import State
-from rclpy.timer import Clock
+from rclpy.clock import Clock
 
 DEG_TO_RAD=0.017453292519943295
 _clock = Clock()
