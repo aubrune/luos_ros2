@@ -36,7 +36,7 @@ roscore
 ### In terminal 2: ROS 1 Bridge in workspace `~/ros1_bridge_ws`
 ```
 source ~/ros1_bridge_ws/install/setup.bash
-ros2 run ros1_bridge dynamic_bridge
+ros2 run ros1_bridge dynamic_bridge --bridge-all-2to1-topics
 ```
 
 ### In terminal 3: Luos broker in workspace `~/ros2_ws`
