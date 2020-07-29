@@ -5,7 +5,7 @@ This procedure has been tested with ROS 1 Noetic + ROS 2 Foxy and Python 3.8.2 i
 
 ## 1. Install ROS 2 and Luos
 
-Make sure you have first [installed ROS 2](README.md) and managed to run the broker in ROS 2 with the command `ros2 run luos_interface broker`.
+Make sure you have first [installed ROS 2](README.md) and managed to run the broker in ROS 2 with the command `ros2 launch luos_interface broker.launch.py`.
 We assume your ROS 2 workspace is `~/ros2_ws`.
 
 ## 2. Install ROS 1 and the ROS 1 bridge
@@ -43,7 +43,7 @@ ros2 run ros1_bridge dynamic_bridge --bridge-all-2to1-topics
 Plug some Luos modules before starting the broker.
 ```
 source ~/ros2_ws/install/setup.bash
-ros2 run luos_interface broker.py
+ros2 launch luos_interface broker.launch.py
 ```
 
 ### In terminal 1: Your ROS 1 app in workspace `~/ros_ws`
@@ -52,3 +52,4 @@ Let's consider here that `rostopic` is the ROS 1 app you want to run with Luos m
 source ~/ros_ws/devel/setup.bash
 rostopic list
 ```
+You can then publish and subscribe to the available topics in ROS 1.

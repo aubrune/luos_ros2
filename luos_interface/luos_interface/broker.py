@@ -6,6 +6,7 @@ from pyluos import Device
 from serial import SerialException
 from rcl_interfaces.srv import GetParameters
 from .modules import make_module_interface_factory
+from .utils.serial import get_available_ports
 
 
 class LuosBroker(Node):
@@ -55,17 +56,12 @@ class LuosBroker(Node):
             return True
 
     def autoconnect(self):
-        # TODO Windows, MacOS
-        if isdir("/dev/"):
-            # Linux
-            devices = listdir("/dev")
-            for device in devices:
-                if device.startswith("ttyUSB"):
-                    path = join("/dev", device)
-                    if self._connect(path):
-                        param = rclpy.parameter.Parameter("device", rclpy.Parameter.Type.STRING, path)
-                        self.set_parameters([param])
-                        return True
+        ports = get_available_ports()
+        for device in ports:
+            if self._connect(device):
+                param = rclpy.parameter.Parameter("device", rclpy.Parameter.Type.STRING, device)
+                self.set_parameters([param])
+                return True
         return False
 
     def close(self):

@@ -21,7 +21,7 @@ source ~/ros2_ws/install/setup.bash
 The Luos broker is a node that will automatically publish the detected plugged in Luos modules into ROS.
 Just plug in your Luos gate and other modules, such as Imu, Color or State, and run the broker: 
 ```
-~$ ros2 run luos_interface broker 
+~$ ros2 launch luos_interface broker.launch.py
 [INFO] [luos_broker]: Connecting to /dev/ttyUSB0...
 [INFO] [luos_broker]: Found modules:
 -------------------------------------------------
@@ -31,6 +31,11 @@ Gate                gate                1
 Imu                 Imu_mod             2    
 State               button_mod          3    
 Color               rgb_led_mod         5    
+```
+
+**Note:** If you have several Luos gates, you need several brokers. Specify a port and unique name for each of them:
+```
+ros2 launch luos_interface broker.launch.py device:=/dev/ttyUSB1 name:=brokerUSB1
 ```
 
 According the modules you've plugged-in, the broker will automatically publish the revelant topics in the namespace of your modules' aliases.
@@ -113,11 +118,11 @@ You can then add your ROS Python scripts, by taking example on the [bike sharing
 - [x] Subscribers (write access to Luos modules)
 - [ ] Integration of other Luos types
 - [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
-- [ ] Get all the ttys
+- [x] Get all the ttys
 - [ ] Several imu modules with the same alias -> Publish to /gps1
 - [ ] Runtime update of pubs/subs when modules are connected and disconnected
-- [ ] Windows and MacOS autoconnect
-- [ ] ROS1 bridge
+- [ ] check Windows and MacOS autoconnect
+- [x] ROS1 bridge
 - [ ] Integrate doc into https://luos-robotics.github.io/ 
 
 [![](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fcommunity.luos.io&logo=Discourse)](https://community.luos.io)
