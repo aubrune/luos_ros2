@@ -23,7 +23,8 @@ find_package(rosidl_default_generators REQUIRED)
 
 # Luos message types
 set(msg_files
-  "msg/State.msg"
+  "msg/BoolChange.msg"
+  "msg/FloatChange.msg"
 )
 
 if(BUILD_TESTING)

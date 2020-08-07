@@ -1,6 +1,6 @@
-from luos_msgs.msg import State
+from luos_msgs.msg import BoolChange
 from std_msgs.msg import Bool
-from .serializers import serializeState, serializeBool
+from .serializers import serializeBoolChange, serializeBool
 from .deserializers import deserializeBool
 from .generic import LuosGenericPublisher
 
@@ -12,9 +12,9 @@ class LuosStatePublisher(LuosGenericPublisher):
                       "read": True, "write": True},
         }
         events = {
-            "rising": {"type": State, "serialize": serializeState},
-            "falling": {"type": State, "serialize": serializeState},
-            "changed": {"type": State, "serialize": serializeState}
+            "rising": {"type": BoolChange, "serialize": serializeBoolChange},
+            "falling": {"type": BoolChange, "serialize": serializeBoolChange},
+            "changed": {"type": BoolChange, "serialize": serializeBoolChange}
         }
         aggregates = {}
         super(LuosStatePublisher, self).__init__(node, module, rate, variables, events, aggregates)

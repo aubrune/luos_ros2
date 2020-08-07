@@ -8,7 +8,7 @@ There are:
 from std_msgs.msg import Bool, Float32, UInt32, ColorRGBA
 from geometry_msgs.msg import Vector3, Accel
 from sensor_msgs.msg import Imu, MagneticField
-from luos_msgs.msg import State
+from luos_msgs.msg import BoolChange, FloatChange
 from rclpy.clock import Clock
 
 DEG_TO_RAD=0.017453292519943295
@@ -86,8 +86,17 @@ def serializeImu(module):
 """
 Event serialization from State Luos module to State ROS type
 """
-def serializeState(module, event):
-    return State(
+def serializeBoolChange(module, event):
+    return BoolChange(
+        old_value=event.old_value,
+        new_value=event.new_value
+    )
+
+"""
+Event serialization 
+"""
+def serializeFloatChange(module, event):
+    return FloatChange(
         old_value=event.old_value,
         new_value=event.new_value
     )

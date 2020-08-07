@@ -1,0 +1,2 @@
+float32 old_value
+float32 new_value
