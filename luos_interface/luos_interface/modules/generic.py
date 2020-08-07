@@ -11,6 +11,9 @@ class LuosGenericPublisher(object):
         self.events = events          # Dict {name: ROSType}
         self.aggregates = aggregates  # Dict {name: ROSType}
 
+        # None cases is autorise for mardown doc generation
+        if node is None and module is None and rate is None: return
+
         # Open publishers for Luos variables
         for variable, info in self.variables.items():
             type = info["type"]
@@ -79,3 +82,29 @@ class LuosGenericPublisher(object):
         for aggregate, info in self.aggregates.items():
             serialize = info["serialize"]
             self._publishers[aggregate]["pub"].publish(serialize(self._module))
+
+    def get_markdown_doc(self):
+        from io import StringIO
+        from std_msgs.msg import Bool
+        from luos_interface.modules.deserializers import deserializeBool
+
+        def long_type(type):
+            split = str(type).split('\'')[1].split('.')
+            return split[0] + "/" + split[-1]
+
+        doc = StringIO()
+
+        for variable in self.variables:
+            if self.variables[variable]["read"]:
+                doc.writelines(["| /mod/variables/{}/read | {}".format(variable, long_type(self.variables[variable]["type"])), "\n"])
+            if self.variables[variable]["write"]:
+                type = Bool if self.variables[variable]["deserialize"] == deserializeBool else self.variables[variable]["type"]
+                doc.writelines(["| /mod/variables/{}/write | {}".format(variable, long_type(type)), "\n"])
+        
+        for event in self.events:
+                doc.writelines(["| /mod/events/{} | {}".format(event, long_type(self.events[event]["type"])), "\n"])
+        
+        for aggregate in self.aggregates:
+                doc.writelines(["| /mod/{} | {}".format(aggregate, long_type(self.aggregates[aggregate]["type"])), "\n"])
+        
+        return doc.getvalue()
