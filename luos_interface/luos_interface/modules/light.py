@@ -7,12 +7,14 @@ from .generic import LuosGenericPublisher
 class LuosLightPublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "lux": {"type": Float32,
-                      "serialize": serializeFloat32, "deserialize": None,
-                      "read": True, "write": False},
-            "threshold": {"type": Float32,
-                      "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
+            "lux": {
+                "read_type": Float32,
+                "serialize": serializeFloat32
+                },
+            "threshold": {
+                "read_type": Float32, "write_type": Float32, 
+                "serialize": serializeFloat32, "deserialize": deserializeFloat32,
+                },
         }
         events = {
             "changed": {"type": FloatChange, "serialize": serializeFloatChange},

@@ -6,9 +6,10 @@ from .generic import LuosGenericPublisher
 class LuosDcMotorPublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "power_ratio": {"type": Float32,
+            "power_ratio": {
+                      "read_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
+                      },
         }
         events = {}
         aggregates = {}

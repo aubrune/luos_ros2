@@ -7,12 +7,14 @@ from .generic import LuosGenericPublisher
 class LuosAnglePublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "rot_position": {"type": Float32,
-                      "serialize": serializeFloat32, "deserialize": None,
-                      "read": True, "write": False},
-            "Thresholds": {"type": Float32,
-                      "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
+            "rot_position": {
+                "read_type": Float32,
+                "serialize": serializeFloat32,
+                 },
+            "threshold": {
+                "read_type": Float32, "write_type": Float32,
+                "serialize": serializeFloat32, "deserialize": deserializeFloat32,
+                },
         }
         events = {
             "changed": {"type": FloatChange, "serialize": serializeFloatChange},

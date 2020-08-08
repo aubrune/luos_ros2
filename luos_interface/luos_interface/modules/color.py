@@ -6,12 +6,12 @@ from .generic import LuosGenericPublisher
 class LuosColorPublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "color": {"type": ColorRGBA,
+            "color": {"read_type": ColorRGBA, "write_type": ColorRGBA,
                       "serialize": serializeColor, "deserialize": deserializeColor,
-                      "read": True, "write": True},
-            "time": {"type": Float32,
+                     },
+            "time": {"read_type": Float32, "write_type": Float32,
                      "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                     "read": True, "write": True}
+                    }
         }
         events = {}
         aggregates = {}

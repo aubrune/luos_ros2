@@ -1,4 +1,4 @@
-from std_msgs.msg import UInt32, Float32
+from std_msgs.msg import UInt32, Float32, Bool
 from geometry_msgs.msg import Vector3, Accel
 from sensor_msgs.msg import Imu, MagneticField
 from .serializers import serializeUInt32, serializeFloat32, serializeVector3
@@ -9,14 +9,14 @@ from .generic import LuosGenericPublisher
 class LuosImuPublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "pedometer": {"type": UInt32, "read": True, "write": True,
+            "pedometer": {"read_type": UInt32, "write_type": Bool,
                           "serialize": serializeUInt32, "deserialize": deserializeBool},
-            "walk_time": {"type": Float32, "read": True, "write": True,
+            "walk_time": {"read_type": Float32, "write_type": Bool,
                           "serialize": serializeFloat32, "deserialize": deserializeBool},
-            "gravity_vector": {"type": Vector3, "read": True, "write": True,
+            "gravity_vector": {"read_type": Vector3, "write_type": Bool,
                                "serialize": serializeVector3, "deserialize": deserializeBool},
             # TODO: is heading a [Float, Float, Float]?
-            "heading": {"type": UInt32, "read": True, "write": True,
+            "heading": {"read_type": UInt32, "write_type": Bool,
                         "serialize": serializeUInt32, "deserialize": deserializeBool},
         }
         events = {}

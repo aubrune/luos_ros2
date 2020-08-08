@@ -7,12 +7,12 @@ from .generic import LuosGenericPublisher
 class LuosVoltagePublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "volt": {"type": Float32,
+            "volt": {"read_type": Float32, "write_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": True},
-            "threshold": {"type": Float32,
+                    },
+            "threshold": {"read_type": Float32, "write_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": True},
+                    },
         }
         events = {
             "changed": {"type": FloatChange, "serialize": serializeFloatChange},

@@ -7,9 +7,10 @@ from .generic import LuosGenericPublisher
 class LuosStatePublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "state": {"type": Bool,
-                      "serialize": serializeBool, "deserialize": deserializeBool,
-                      "read": True, "write": True},
+            "state": {
+                "read_type": Bool, "write_type": Bool,
+                "serialize": serializeBool, "deserialize": deserializeBool,
+                },
         }
         events = {
             "rising": {"type": BoolChange, "serialize": serializeBoolChange},

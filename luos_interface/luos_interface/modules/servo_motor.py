@@ -7,18 +7,18 @@ from .generic import LuosGenericPublisher
 class LuosServoMotorPublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "rot_position": {"type": Float32,
+            "rot_position": {"read_type": Float32, "write_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
-            "max_angle": {"type": Float32,
+                      },
+            "max_angle": {"read_type": Float32, "write_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
-            "min_pulse": {"type": Float32,
+                      },
+            "min_pulse": {"read_type": Float32, "write_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
-            "max_pulse": {"type": Float32,
+                      },
+            "max_pulse": {"read_type": Float32, "write_type": Float32,
                       "serialize": serializeFloat32, "deserialize": deserializeFloat32,
-                      "read": True, "write": False},
+                      },
         }
         events = {}
         aggregates = {}

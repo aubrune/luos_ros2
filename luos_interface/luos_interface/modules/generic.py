@@ -11,30 +11,29 @@ class LuosGenericPublisher(object):
         self.events = events          # Dict {name: ROSType}
         self.aggregates = aggregates  # Dict {name: ROSType}
 
-        # None cases is autorise for mardown doc generation
+        # None case is autorised for mardown doc generation
         if node is None and module is None and rate is None: return
 
         # Open publishers for Luos variables
         for variable, info in self.variables.items():
-            type = info["type"]
             topic_root = [module.alias, "variables", variable]
-            if "read" in info and info["read"]:
+            if "read_type" in info:
                 topic = "/".join(topic_root + ["read"])
                 self._publishers[variable] = {
                     "topic": topic,
-                    "type": type,
-                    "pub": self._node.create_publisher(type, topic, self.QUEUE_SIZE)
+                    "type": info["read_type"],
+                    "pub": self._node.create_publisher(info["read_type"], topic, self.QUEUE_SIZE)
                 }
-            if "write" in info and info["write"]:
+            if "write_type" in info:
                 topic = "/".join(topic_root + ["write"])
                 callback = lambda msg, variable=variable: self._subscription_callback(msg, variable)
                 self._subscribers[variable] = {
                     "topic": topic,
-                    "type": type,
+                    "type": info["write_type"],
                     "callback": callback,
                 }
                 self._node.create_subscription(
-                    type,
+                    info["write_type"],
                     topic,
                     callback,
                     self.QUEUE_SIZE
@@ -95,11 +94,10 @@ class LuosGenericPublisher(object):
         doc = StringIO()
 
         for variable in self.variables:
-            if self.variables[variable]["read"]:
-                doc.writelines(["| /mod/variables/{}/read | {}".format(variable, long_type(self.variables[variable]["type"])), "\n"])
-            if self.variables[variable]["write"]:
-                type = Bool if self.variables[variable]["deserialize"] == deserializeBool else self.variables[variable]["type"]
-                doc.writelines(["| /mod/variables/{}/write | {}".format(variable, long_type(type)), "\n"])
+            if self.variables[variable]["read_type"]:
+                doc.writelines(["| /mod/variables/{}/read | {}".format(variable, long_type(self.variables[variable]["read_type"])), "\n"])
+            if self.variables[variable]["write_type"]:
+                doc.writelines(["| /mod/variables/{}/write | {}".format(variable, long_type(self.variables[variable]["write_type"])), "\n"])
         
         for event in self.events:
                 doc.writelines(["| /mod/events/{} | {}".format(event, long_type(self.events[event]["type"])), "\n"])
