@@ -7,7 +7,7 @@ from .generic import LuosGenericPublisher
 class LuosDistancePublisher(LuosGenericPublisher):
     def __init__(self, node, module, rate):
         variables = {
-            "rot_position": {
+            "distance": {
                 "read_type": Float32,
                 "serialize": serializeFloat32
                 },
