@@ -89,14 +89,14 @@ class LuosGenericPublisher(object):
 
         def long_type(type):
             split = str(type).split('\'')[1].split('.')
-            return split[0] + "/" + split[-1]
+            return split[0] + "/msg/" + split[-1]
 
         doc = StringIO()
 
         for variable in self.variables:
-            if self.variables[variable]["read_type"]:
+            if "read_type" in self.variables[variable]:
                 doc.writelines(["| /mod/variables/{}/read | {}".format(variable, long_type(self.variables[variable]["read_type"])), "\n"])
-            if self.variables[variable]["write_type"]:
+            if "write_type" in self.variables[variable]:
                 doc.writelines(["| /mod/variables/{}/write | {}".format(variable, long_type(self.variables[variable]["write_type"])), "\n"])
         
         for event in self.events:
