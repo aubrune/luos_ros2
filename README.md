@@ -55,7 +55,7 @@ Here we've plugged a `State` module (alias `button_mod`), a `Imu` module (alias 
 /Imu_mod/variables/walk_time/write
 /button_mod/events/changed
 /button_mod/events/falling
-/button_mod/events/rising
+/button_mod/events/released
 /button_mod/variables/state/read
 /button_mod/variables/state/write
 /parameter_events

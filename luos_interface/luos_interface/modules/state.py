@@ -13,7 +13,7 @@ class LuosStatePublisher(LuosGenericPublisher):
                 },
         }
         events = {
-            "rising": {"type": BoolChange, "serialize": serializeBoolChange},
+            "released": {"type": BoolChange, "serialize": serializeBoolChange},
             "falling": {"type": BoolChange, "serialize": serializeBoolChange},
             "changed": {"type": BoolChange, "serialize": serializeBoolChange}
         }
