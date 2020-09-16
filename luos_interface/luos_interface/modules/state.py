@@ -14,7 +14,7 @@ class LuosStatePublisher(LuosGenericPublisher):
         }
         events = {
             "released": {"type": BoolChange, "serialize": serializeBoolChange},
-            "falling": {"type": BoolChange, "serialize": serializeBoolChange},
+            "pressed": {"type": BoolChange, "serialize": serializeBoolChange},
             "changed": {"type": BoolChange, "serialize": serializeBoolChange}
         }
         aggregates = {}
