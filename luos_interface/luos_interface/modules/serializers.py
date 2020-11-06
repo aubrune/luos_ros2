@@ -20,6 +20,9 @@ def serializeBool(data):
 def serializeFloat32(data):
     return Float32(data=float('nan' if data is None else data))
 
+def serializeFloat32DegToRad(data):
+    return serializeFloat32(data*DEG_TO_RAD)
+
 def serializeUInt32(data):
     return UInt32(data=int(data))
 

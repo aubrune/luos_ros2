@@ -5,13 +5,17 @@ There are:
   * module-dependent deserialiers
 """
 
-#RAD_TO_DEG = 57.29577951308232
+RAD_TO_DEG = 57.29577951308232
 
 def deserializeBool(msg):
     return bool(msg.data)
 
 def deserializeFloat32(msg):
     return float(msg.data)
+
+def deserializeFloat32RadToDeg(msg):
+    msg.data *= RAD_TO_DEG
+    return deserializeFloat32(msg)
 
 def deserializeUInt32(msg):
     return int(msg.data)

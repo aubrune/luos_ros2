@@ -1,7 +1,7 @@
 from std_msgs.msg import Float32, Bool
 from geometry_msgs.msg import Vector3
-from .serializers import serializeVector3, serializeFloat32, serializeBool
-from .deserializers import deserializeVector3, deserializeFloat32, deserializeBool
+from .serializers import serializeVector3, serializeFloat32, serializeBool, serializeFloat32DegToRad
+from .deserializers import deserializeVector3, deserializeFloat32, deserializeBool, deserializeFloat32RadToDeg
 from .generic import LuosGenericPublisher
 
 
@@ -61,10 +61,10 @@ class LuosControlledMotorPublisher(LuosGenericPublisher):
                 "serialize": serializeFloat32, "deserialize": deserializeFloat32},
             "target_rot_position": {
                 "read_type": Float32, "write_type": Float32,
-                "serialize": serializeFloat32, "deserialize": deserializeFloat32},
+                "serialize": serializeFloat32DegToRad, "deserialize": deserializeFloat32RadToDeg},
             "target_rot_speed": {
                 "read_type": Float32, "write_type": Float32,
-                "serialize": serializeFloat32, "deserialize": deserializeFloat32},
+                "serialize": serializeFloat32DegToRad, "deserialize": deserializeFloat32RadToDeg},
             "target_trans_position": {
                 "read_type": Float32, "write_type": Float32,
                 "serialize": serializeFloat32, "deserialize": deserializeFloat32},
