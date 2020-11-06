@@ -10,6 +10,7 @@ from .light import LuosLightPublisher
 from .servo_motor import LuosServoMotorPublisher
 from .voltage import LuosVoltagePublisher
 from .dxl import LuosDxlMotorPublisher
+from .stepper import LuosStepperMotorPublisher
 
 _make = {
     'State': LuosStatePublisher,
@@ -24,6 +25,7 @@ _make = {
     'Servo': LuosServoMotorPublisher,
     'Voltage': LuosVoltagePublisher,
     'DynamixelMotor': LuosDxlMotorPublisher,
+    'Stepper': LuosStepperMotorPublisher,
 }
 
 def make_module_interface_factory(node, module, rate):
