@@ -21,13 +21,21 @@ def serializeFloat32(data):
     return Float32(data=float('nan' if data is None else data))
 
 def serializeFloat32DegToRad(data):
-    return serializeFloat32(data*DEG_TO_RAD)
+    return Float32(data=float('nan' if data is None else data*DEG_TO_RAD))
 
 def serializeUInt32(data):
     return UInt32(data=int(data))
 
 def serializeVector3(data):
-    return(Vector3(x=float(data[0]), y=float(data[1]), z=float(data[2])))
+    return(Vector3(x=float('nan' if data[0] is None else data[0]),
+                   y=float('nan' if data[1] is None else data[1]),
+                   z=float('nan' if data[2] is None else data[2])))
+
+def serializeVector3MinMax(data):
+    # Vector 3 is used to represent (min, max) couples with x=min, y=max, z=<whatever>
+    return(Vector3(x=float('nan' if data[0] is None else data[0]),
+                   y=float('nan' if data[1] is None else data[1]),
+                   z=float('nan')))
 
 """
 Variable serialization from Color Luos module to ColorRGBA ROS type

@@ -9,6 +9,7 @@ from .distance import LuosDistancePublisher
 from .light import LuosLightPublisher
 from .servo_motor import LuosServoMotorPublisher
 from .voltage import LuosVoltagePublisher
+from .dxl import LuosDxlMotorPublisher
 
 _make = {
     'State': LuosStatePublisher,
@@ -22,11 +23,14 @@ _make = {
     'LightSensor': LuosLightPublisher,
     'Servo': LuosServoMotorPublisher,
     'Voltage': LuosVoltagePublisher,
+    'DynamixelMotor': LuosDxlMotorPublisher,
 }
 
 def make_module_interface_factory(node, module, rate):
     if module.type in _make:
         return _make[module.type](node, module, rate)
+    elif module.type == 'Void':
+        node.get_logger().warn("A DynamixelMotor module has been found but no motor has been connected. Please connect a motor first.")
     elif module.type != 'Gate':
         # Gate has no publisher or subscriber
         node.get_logger().warn("Luos module type '{}' is unknown to luos_interface and will be ignored".format(module.type))

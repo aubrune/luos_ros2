@@ -23,6 +23,10 @@ def deserializeUInt32(msg):
 def deserializeVector3(msg):
     return [msg.x, msg.y, msg.z]
 
+def deserializeVector3MinMax(msg):
+    # Vector 3 is used to represent (min, max) couples with x=min, y=max, z=<whatever>
+    return [msg.x, msg.y]
+
 def deserializeColor(msg):
     return [msg.r, msg.g, msg.b]
 
