@@ -125,6 +125,8 @@ You can then add your ROS Python scripts, by taking example on the [bike sharing
 - [ ] Runtime update of pubs/subs when modules are connected and disconnected
 - [ ] check Windows and MacOS autoconnect
 - [~] Integrate doc into https://luos-robotics.github.io/ 
+- [ ] ROS1-only version
+
 
 [![](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fcommunity.luos.io&logo=Discourse)](https://community.luos.io)
 [![](https://img.shields.io/badge/Luos-Documentation-34A3B4)](https://docs.luos.io)
