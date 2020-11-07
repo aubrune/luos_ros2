@@ -116,14 +116,15 @@ You can then add your ROS Python scripts, by taking example on the [bike sharing
 - [x] Launch files
 - [x] ROS param for publishing rate and device name?
 - [x] Subscribers (write access to Luos modules)
-- [ ] Integration of other Luos types
-- [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [x] Get all the ttys
+- [x] ROS1 bridge
+- [~] Integration of other Luos types
+- [ ] Upgrade to the last pyluos, above 1.2.3 (modules renamed to containers)
+- [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [ ] Several imu modules with the same alias -> Publish to /gps1
 - [ ] Runtime update of pubs/subs when modules are connected and disconnected
 - [ ] check Windows and MacOS autoconnect
-- [x] ROS1 bridge
-- [ ] Integrate doc into https://luos-robotics.github.io/ 
+- [~] Integrate doc into https://luos-robotics.github.io/ 
 
 [![](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fcommunity.luos.io&logo=Discourse)](https://community.luos.io)
 [![](https://img.shields.io/badge/Luos-Documentation-34A3B4)](https://docs.luos.io)
