@@ -118,14 +118,35 @@ You can then add your ROS Python scripts, by taking example on the [bike sharing
 - [x] Subscribers (write access to Luos modules)
 - [x] Get all the ttys
 - [x] ROS1 bridge
-- [~] Integration of other Luos types
-- [ ] Upgrade to the last pyluos, above 1.2.3 (modules renamed to containers)
+- [~] Integration of all Luos types (2)
+- [ ] Upgrade to the last pyluos, above 1.2.3 (modules renamed to containers) (1)
 - [ ] (Auto?) Starting Luos modules data e.g. imu.orientation
 - [ ] Several imu modules with the same alias -> Publish to /gps1
 - [ ] Runtime update of pubs/subs when modules are connected and disconnected
 - [ ] check Windows and MacOS autoconnect
 - [~] Integrate doc into https://luos-robotics.github.io/ 
 - [ ] ROS1-only version
+
+**(1)** Pyluos > 1.2.3 Update > modules moved to containers > requires gate udpate > requires Luos 0.7.0 > Robus compiling issue 
+
+### (2) Integration of all Luos types
+**Done/Tested:**
+3.2.1. Angle : OK / TESTED
+3.2.2. Color : OK / TESTED
+3.2.3. Controlled motor : OK / TESTED
+3.2.6. Dynamixel motor : OK / TESTED
+3.2.7. Gate : OK / TESTED
+3.2.8. IMU : OK / TESTED
+3.2.9. Light : OK / TESTED
+3.2.10. Servo motor : OK / TESTED 
+3.2.11. State : OK / TESTED
+
+**In progress:**
+3.2.4. DC motor : OK / UNTESTED value = Nan?
+3.2.5. Distance : OK / UNTESTED defective module
+3.2.12. Stepper motor : OK / UNTESTED https://github.com/Luos-io/Documentation/issues/86 + https://github.com/aubrune/Pyluos/commit/befabfa603a781f6381932d98ff5303332366b4c
+3.2.13. Voltage : OK / UNTESTED No PlatformIO project
+
 
 
 [![](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fcommunity.luos.io&logo=Discourse)](https://community.luos.io)
