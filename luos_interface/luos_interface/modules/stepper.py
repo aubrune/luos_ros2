@@ -10,22 +10,22 @@ class LuosStepperMotorPublisher(LuosGenericPublisher):
                 "read_type": Bool, "write_type": Bool,
                 "serialize": serializeBool, "deserialize": deserializeBool,
             },
-            "rot_position_mode": {
-                "read_type": Bool, "write_type": Bool,
-                "serialize": serializeBool, "deserialize": deserializeBool,
-            },
-            "rot_speed_mode": {
-                "read_type": Bool, "write_type": Bool,
-                "serialize": serializeBool, "deserialize": deserializeBool,
-            },
-            "trans_position_mode": {
-                "read_type": Bool, "write_type": Bool,
-                "serialize": serializeBool, "deserialize": deserializeBool,
-            },
-            "trans_speed_mode": {
-                "read_type": Bool, "write_type": Bool,
-                "serialize": serializeBool, "deserialize": deserializeBool,
-            },
+            # "rot_position_mode": {
+            #     "read_type": Bool, "write_type": Bool,
+            #     "serialize": serializeBool, "deserialize": deserializeBool,
+            # },
+            # "rot_speed_mode": {
+            #     "read_type": Bool, "write_type": Bool,
+            #     "serialize": serializeBool, "deserialize": deserializeBool,
+            # },
+            # "trans_position_mode": {
+            #     "read_type": Bool, "write_type": Bool,
+            #     "serialize": serializeBool, "deserialize": deserializeBool,
+            # },
+            # "trans_speed_mode": {
+            #     "read_type": Bool, "write_type": Bool,
+            #     "serialize": serializeBool, "deserialize": deserializeBool,
+            # },
             "stepPerTurn": {
                 "read_type": Float32, "write_type": Float32,
                 "serialize": serializeFloat32, "deserialize": deserializeFloat32,
